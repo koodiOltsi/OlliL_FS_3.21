@@ -3,15 +3,15 @@ const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
 
 // Add this BEFORE your MongoDB connection code
-const dns = require('dns');
-dns.setServers(['8.8.8.8', '8.8.4.4']); // Google DNS
+const dns = require('dns')
+dns.setServers(['8.8.8.8', '8.8.4.4']) // Google DNS
 
 const url = process.env.MONGODB_URI
 
 console.log('connecting to', url)
 //mongoose.connect(url, { family: 4 })
 mongoose.connect(url)
-  .then(result => {
+  .then(() => {
     console.log('connected to MongoDB')
   })
   .catch((error) => {

@@ -66,7 +66,7 @@ app.post('/api/persons', (request, response, next) => {
       error: 'number missing',
     })
   }
-  
+
   const person = new Person({
     name: body.name,
     number: body.number,
@@ -76,7 +76,7 @@ app.post('/api/persons', (request, response, next) => {
     response.json(savedPerson)
     app.use(morgan(':method :url :status :response-time ms :body'))
   })
-  .catch((error) => next(error))
+    .catch((error) => next(error))
 })
 
 app.put('/api/persons/:id', (request, response, next) => {
@@ -100,11 +100,11 @@ app.put('/api/persons/:id', (request, response, next) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndDelete(request.params.id)
-    .then((result) => {
+    .then(() => {
       response.status(204).end()
     })
     .catch((error) => next(error))
-  })
+})
 
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: 'unknown endpoint' })
